@@ -1,6 +1,7 @@
 export enum PlansActions {
   LOAD_REQUEST = "@plan/LOAD_REQUEST",
   LOAD_SUCCESS = "@plan/LOAD_SUCCESS",
+  UPDATE_ATTENDANTS = "@plan/UPDATE_ATTENDANTS",
   LOAD_FAILURE = "@plan/LOAD_FAILURE",
 }
 

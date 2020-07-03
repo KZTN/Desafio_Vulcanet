@@ -13,10 +13,22 @@ const INITIAL_STATE: PlanState = {
 };
 
 const reducer: Reducer<PlanState> = (state = INITIAL_STATE, action) => {
-  console.log(action);
+  console.log(action.payload);
   switch (action.type) {
     case PlansActions.LOAD_SUCCESS:
       return state;
+    case PlansActions.UPDATE_ATTENDANTS: {
+      if (action.payload.amount < 0) {
+        return state;
+      } else {
+        return {
+          ...state,
+          total: state.price + action.payload.amount * action.payload.value,
+          attendants: action.payload.amount,
+        };
+      }
+    }
+
     case PlansActions.LOAD_FAILURE:
       return state;
     default:
