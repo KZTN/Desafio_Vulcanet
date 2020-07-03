@@ -2,7 +2,7 @@ import React from "react";
 import { ApplicationState } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { formatPrice } from "../../util/FormatPrice";
-import * as PlanActions from "../../store/modules/Plan/actions";
+import * as PlanActions from "../../store/modules/Cart/actions";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./styles.scss";
 
@@ -13,7 +13,7 @@ type Props = {
 const Attendant = ({ cost = 0 }: Props) => {
   const dispatch = useDispatch();
   const attendants = useSelector(
-    (state: ApplicationState) => state.plan.attendants
+    (state: ApplicationState) => state.cart.attendants
   );
   function handleAttendants(amount: number, cost: number) {
     dispatch(PlanActions.UpdateAttendants(amount, cost));

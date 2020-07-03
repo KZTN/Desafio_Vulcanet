@@ -1,9 +1,9 @@
 import { createStore, Store } from "redux";
-import { PlanState } from "./modules/Plan/types";
+import { CartState } from "./modules/Cart/types";
 import rootReducer from "./modules/rootReducer";
 
 export interface ApplicationState {
-  plan: PlanState;
+  cart: CartState;
 }
 
 const store: Store<ApplicationState> = createStore(rootReducer);

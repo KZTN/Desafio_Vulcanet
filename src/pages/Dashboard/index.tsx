@@ -3,7 +3,7 @@ import Plan from "../../components/Plan";
 import Attendant from "../../components/Attendant";
 import Total from "../../components/Total";
 
-import * as PlanActions from "../../store/modules/Plan/actions";
+import * as PlanActions from "../../store/modules/Cart/actions";
 
 import api from "../../services/api";
 import { AxiosResponse, AxiosError } from "axios";
@@ -36,7 +36,7 @@ export default function Dashboard() {
         .then((response: AxiosResponse) => {
           setPlans(response.data);
           getCostAttendantData();
-          dispatch(PlanActions.LoadRequest(2, "montly"));
+          dispatch(PlanActions.ChoosePlan(response.data[1], "montly"));
           setLoading(false);
         })
         .catch((error: AxiosError) => {

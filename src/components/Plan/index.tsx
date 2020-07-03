@@ -14,7 +14,9 @@ type Props = {
 };
 
 const Plan = ({ id, name, description, price, features }: Props) => {
-  const selectedPlan = useSelector((state: ApplicationState) => state.plan.id);
+  const selectedPlan = useSelector(
+    (state: ApplicationState) => state.cart.plan.id
+  );
   return (
     <div className="plan">
       <header>
