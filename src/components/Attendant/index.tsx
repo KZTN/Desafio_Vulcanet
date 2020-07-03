@@ -1,7 +1,15 @@
 import React from "react";
-import "./styles.scss";
+import { ApplicationState } from "../../store";
+import { useSelector } from "react-redux";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import "./styles.scss";
 const Attendant: React.FC = () => {
+  const attendants = useSelector(
+    (state: ApplicationState) => state.plan.attendants
+  );
+  function handleAttendants(attendants: number) {
+    console.log(attendants);
+  }
   return (
     <section id="attendant">
       <div className="left-content">
@@ -9,11 +17,11 @@ const Attendant: React.FC = () => {
         <p>+R$130/mês por atendente</p>
       </div>
       <div className="right-content">
-        <button>
+        <button onClick={() => handleAttendants(attendants - 1)}>
           <FaChevronLeft size={18} color="#00a6ce" />
         </button>
-        <span>0</span>
-        <button>
+        <span>{attendants}</span>
+        <button onClick={() => handleAttendants(attendants + 1)}>
           <FaChevronRight size={18} color="#00a6ce" />
         </button>
       </div>

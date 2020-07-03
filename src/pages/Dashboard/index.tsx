@@ -42,6 +42,7 @@ export default function Dashboard() {
         {plans.map((plan) => (
           <Plan
             key={plan.id}
+            id={plan.id}
             description={plan.description}
             name={plan.name}
             features={plan.features}

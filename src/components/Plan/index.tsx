@@ -1,17 +1,20 @@
 import React from "react";
 import ChatIcon from "../../assets/chat.svg";
 import CheckIcon from "../../assets/check.svg";
-
+import { ApplicationState } from "../../store";
+import { useSelector } from "react-redux";
 import "./styles.scss";
 import { formatPrice } from "../../util/FormatPrice";
 type Props = {
-  description: string;
+  id: number;
   name: string;
-  features: string[];
+  description: string;
   price: number;
+  features: string[];
 };
 
-const Plan = ({ description, name, features, price }: Props) => {
+const Plan = ({ id, name, description, price, features }: Props) => {
+  const selectedPlan = useSelector((state: ApplicationState) => state.plan.id);
   return (
     <div className="plan">
       <header>
@@ -25,7 +28,9 @@ const Plan = ({ description, name, features, price }: Props) => {
       <div className="price">
         <strong>{formatPrice(price)}/mês</strong>
       </div>
-      <button>Selecionar</button>
+      <button className={selectedPlan === id ? "selected" : ""}>
+        Selecionar
+      </button>
       <ul>
         {features.map((feature, index) => (
           <li key={index}>
