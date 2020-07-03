@@ -3,10 +3,13 @@ import { PlanState, PlansActions } from "./types";
 
 const INITIAL_STATE: PlanState = {
   id: -1,
+  attendants: 0,
   description: "",
-  name: "",
-  prices: { monthly: 0, yearly: 0 },
   features: [],
+  name: "",
+  price: 0,
+  total: 0,
+  type: "",
 };
 
 const reducer: Reducer<PlanState> = (state = INITIAL_STATE, action) => {

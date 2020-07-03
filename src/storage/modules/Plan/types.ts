@@ -4,15 +4,13 @@ export enum PlansActions {
   LOAD_FAILURE = "@plan/LOAD_FAILURE",
 }
 
-export interface Prices {
-  monthly: number;
-  yearly: number;
-}
-
 export interface PlanState {
   readonly id: number;
   readonly name: string;
   readonly description: string;
-  readonly prices: Prices;
+  readonly price: number;
+  readonly type: String;
   readonly features: string[];
+  readonly attendants: number;
+  readonly total: number;
 }
