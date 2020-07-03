@@ -8,7 +8,7 @@ main#dashboard {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.5rem 3rem;
 }
 
 main#dashboard .dashboard-actions {
@@ -25,10 +25,15 @@ main#dashboard .dashboard-actions {
     color: #212121;
     cursor: pointer;
     &.active {
-      background: #00a6ce;
+      background: var(--common-color-blue);
       color: #fff;
       border-radius: 100px;
       font-weight: 400;
     }
   }
+}
+
+main#dashboard section#plans {
+  display: flex;
+  flex-direction: row;
 }

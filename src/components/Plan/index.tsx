@@ -1,5 +1,5 @@
 import React from "react";
-
+import ChatIcon from "../../assets/chat.svg";
 import "./styles.scss";
 
 type Props = {
@@ -12,10 +12,16 @@ type Props = {
 const Plan = ({ description, name, features, price }: Props) => {
   return (
     <div className="plan">
-      <h1>{name}</h1>
+      <header>
+        <img src={ChatIcon} alt="" /> <span>{name}</span>
+      </header>
       <strong>{price}</strong>
       <h2>{description}</h2>
-      <h3>{features}</h3>
+      <div className="features">
+        {features.map((feature) => (
+          <span>{feature}</span>
+        ))}
+      </div>
     </div>
   );
 };

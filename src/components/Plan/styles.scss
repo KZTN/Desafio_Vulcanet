@@ -1,0 +1,21 @@
+.plan {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  span {
+    color: var(--common-color-blue);
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 20px;
+  }
+}
+
+.plan .features {
+  display: flex;
+  flex-direction: column;
+}
