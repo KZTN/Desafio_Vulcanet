@@ -3,12 +3,17 @@ import Plan from "../../components/Plan";
 import Attendant from "../../components/Attendant";
 import Total from "../../components/Total";
 
+import * as PlanActions from "../../store/modules/Plan/actions";
+
 import api from "../../services/api";
 import { AxiosResponse, AxiosError } from "axios";
 import { Plan_TYPE } from "./types";
 import "./styles.scss";
 
+import { useDispatch } from "react-redux";
+
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const [plans, setPlans] = useState<Plan_TYPE[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -18,6 +23,7 @@ export default function Dashboard() {
         .get("/plans")
         .then((response: AxiosResponse) => {
           setPlans(response.data);
+          dispatch(PlanActions.LoadRequest(2, "montly"));
           setLoading(false);
         })
         .catch((error: AxiosError) => {
@@ -25,7 +31,7 @@ export default function Dashboard() {
         });
     }
     getData();
-  }, []);
+  }, [dispatch]);
   return (
     <main id="dashboard">
       <div className="dashboard-actions">
