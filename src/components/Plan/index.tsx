@@ -1,7 +1,7 @@
 import React from "react";
 import ChatIcon from "../../assets/chat.svg";
 import "./styles.scss";
-
+import { formatPrice } from "../../util/FormatPrice";
 type Props = {
   description: string;
   name: string;
@@ -15,7 +15,7 @@ const Plan = ({ description, name, features, price }: Props) => {
       <header>
         <img src={ChatIcon} alt="" /> <span>{name}</span>
       </header>
-      <strong>{price}</strong>
+      <strong>{formatPrice(price)}</strong>
       <h2>{description}</h2>
       <div className="features">
         {features.map((feature) => (
