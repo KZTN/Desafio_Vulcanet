@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Plan from "../../components/Plan";
+import Attendant from "../../components/Attendant";
+import Total from "../../components/Total";
+
 import api from "../../services/api";
 import { AxiosResponse, AxiosError } from "axios";
 import { Plan_TYPE } from "./types";
@@ -40,6 +43,8 @@ export default function Dashboard() {
           />
         ))}
       </section>
+      <Attendant />
+      <Total />
     </main>
   );
 }

@@ -1,21 +1,66 @@
 .plan {
+  width: 100%;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
 }
 
 .plan header {
-  align-items: center;
   display: flex;
-  flex-direction: row;
-  span {
-    color: var(--common-color-blue);
-    font-weight: bold;
-    font-size: 30px;
-    margin-left: 20px;
+  flex-direction: column;
+  & .title {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    strong {
+      color: var(--common-color-blue);
+      font-weight: bold;
+      font-size: 30px;
+      margin-left: 20px;
+    }
+  }
+  & .description {
+    margin-top: 12px;
+    display: flex;
+    margin-right: auto;
+    span {
+      color: #999;
+    }
   }
 }
 
-.plan .features {
-  display: flex;
-  flex-direction: column;
+.plan ul {
+  margin-top: 20px;
+  list-style: none;
+  & li {
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    & span {
+      margin-left: 5px;
+    }
+  }
+}
+
+.plan .price {
+  font-weight: bold;
+  font-size: 32px;
+  color: var(--common-color-blue);
+  margin-top: 24px;
+}
+
+.plan button {
+  color: #4a507b;
+  border-radius: 100px;
+  width: 100%;
+  border: medium none;
+  height: 38px;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
 }

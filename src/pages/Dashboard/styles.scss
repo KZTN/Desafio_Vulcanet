@@ -8,10 +8,10 @@ main#dashboard {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 3rem;
 }
 
 main#dashboard .dashboard-actions {
+  margin-top: 23px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
   border-radius: 100px;
   display: flex;
@@ -34,6 +34,10 @@ main#dashboard .dashboard-actions {
 }
 
 main#dashboard section#plans {
+  width: 100%;
+  margin-top: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
 }

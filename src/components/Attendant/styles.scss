@@ -1,0 +1,30 @@
+section#attendant {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+  margin-top: auto;
+  align-content: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+}
+
+section#attendant .left-content {
+  text-align: left;
+  & span {
+    font-size: 32px;
+  }
+  & p {
+    color: var(--common-color-blue);
+  }
+}
+
+section#attendant .right-content {
+  display: flex;
+  flex-direction: row;
+  & button {
+    cursor: pointer;
+    background: none;
+    border: 0;
+  }
+}

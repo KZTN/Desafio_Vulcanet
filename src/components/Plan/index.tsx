@@ -1,5 +1,7 @@
 import React from "react";
 import ChatIcon from "../../assets/chat.svg";
+import CheckIcon from "../../assets/check.svg";
+
 import "./styles.scss";
 import { formatPrice } from "../../util/FormatPrice";
 type Props = {
@@ -13,15 +15,24 @@ const Plan = ({ description, name, features, price }: Props) => {
   return (
     <div className="plan">
       <header>
-        <img src={ChatIcon} alt="" /> <span>{name}</span>
+        <div className="title">
+          <img src={ChatIcon} alt="" /> <strong>{name}</strong>
+        </div>
+        <div className="description">
+          <span>{description}</span>
+        </div>
       </header>
-      <strong>{formatPrice(price)}</strong>
-      <h2>{description}</h2>
-      <div className="features">
-        {features.map((feature) => (
-          <span>{feature}</span>
-        ))}
+      <div className="price">
+        <strong>{formatPrice(price)}/mês</strong>
       </div>
+      <button>Selecionar</button>
+      <ul>
+        {features.map((feature, index) => (
+          <li key={index}>
+            <img src={CheckIcon} alt="" /> <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
