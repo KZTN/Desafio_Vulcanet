@@ -1,7 +1,18 @@
 import React from "react";
+import Plan from "../../components/Plan";
 
-// import { Container } from './styles';
+import "./styles.scss";
 
 export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+  return (
+    <main id="dashboard">
+      <div className="dashboard-actions">
+        <button className="active">Mensal</button>
+        <button>Anual</button>
+      </div>
+      <section id="plans">
+        <Plan />
+      </section>
+    </main>
+  );
 }
