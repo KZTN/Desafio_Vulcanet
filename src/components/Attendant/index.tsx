@@ -1,30 +1,35 @@
 import React from "react";
 import { ApplicationState } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
+import { formatPrice } from "../../util/FormatPrice";
 import * as PlanActions from "../../store/modules/Plan/actions";
-
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./styles.scss";
-const Attendant: React.FC = () => {
+
+type Props = {
+  cost: number;
+};
+
+const Attendant = ({ cost = 0 }: Props) => {
   const dispatch = useDispatch();
   const attendants = useSelector(
     (state: ApplicationState) => state.plan.attendants
   );
-  function handleAttendants(amount: number, value: number) {
-    dispatch(PlanActions.UpdateAttendants(amount, value));
+  function handleAttendants(amount: number, cost: number) {
+    dispatch(PlanActions.UpdateAttendants(amount, cost));
   }
   return (
     <section id="attendant">
       <div className="left-content">
         <span>Atendentes</span>
-        <p>+R$130/mês por atendente</p>
+        <p>+{formatPrice(cost)}/mês por atendente</p>
       </div>
       <div className="right-content">
-        <button onClick={() => handleAttendants(attendants - 1, 130)}>
+        <button onClick={() => handleAttendants(attendants - 1, cost)}>
           <FaChevronLeft size={18} color="#00a6ce" />
         </button>
         <span>{attendants}</span>
-        <button onClick={() => handleAttendants(attendants + 1, 130)}>
+        <button onClick={() => handleAttendants(attendants + 1, cost)}>
           <FaChevronRight size={18} color="#00a6ce" />
         </button>
       </div>

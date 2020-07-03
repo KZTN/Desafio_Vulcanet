@@ -23,7 +23,7 @@ const reducer: Reducer<PlanState> = (state = INITIAL_STATE, action) => {
       } else {
         return {
           ...state,
-          total: state.price + action.payload.amount * action.payload.value,
+          total: state.price + action.payload.amount * action.payload.cost,
           attendants: action.payload.amount,
         };
       }

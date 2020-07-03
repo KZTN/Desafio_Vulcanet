@@ -15,14 +15,27 @@ import { useDispatch } from "react-redux";
 export default function Dashboard() {
   const dispatch = useDispatch();
   const [plans, setPlans] = useState<Plan_TYPE[]>([]);
+  const [costattendant, setCostattendant] = useState<number>(0);
+
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    async function getData(): Promise<void> {
+    async function getCostAttendantData(): Promise<void> {
+      await api
+        .get("/attendant")
+        .then((response: AxiosResponse) => {
+          setCostattendant(response.data.cost);
+        })
+        .catch((error: AxiosError) => {
+          console.log(error);
+        });
+    }
+    async function getPlansData(): Promise<void> {
       await api
         .get("/plans")
         .then((response: AxiosResponse) => {
           setPlans(response.data);
+          getCostAttendantData();
           dispatch(PlanActions.LoadRequest(2, "montly"));
           setLoading(false);
         })
@@ -30,7 +43,7 @@ export default function Dashboard() {
           console.log(error);
         });
     }
-    getData();
+    getPlansData();
   }, [dispatch]);
   return (
     <main id="dashboard">
@@ -50,7 +63,7 @@ export default function Dashboard() {
           />
         ))}
       </section>
-      <Attendant />
+      <Attendant cost={costattendant} />
       <Total />
     </main>
   );
