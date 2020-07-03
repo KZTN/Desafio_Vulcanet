@@ -1,5 +1,5 @@
 section#attendant {
-  width: 350px;
+  width: 370px;
   display: flex;
   flex-direction: row;
   margin-right: auto;
@@ -10,7 +10,10 @@ section#attendant {
 }
 
 section#attendant .left-content {
+  width: 100%;
   text-align: left;
+  align-items: center;
+  flex-direction: column;
   & span {
     font-size: 32px;
   }
@@ -21,7 +24,13 @@ section#attendant .left-content {
 
 section#attendant .right-content {
   display: flex;
+  align-items: center;
   flex-direction: row;
+  & span {
+    color: var(--common-color-blue);
+    font-size: 32px;
+    margin: 0px 5px;
+  }
   & button {
     cursor: pointer;
     background: none;

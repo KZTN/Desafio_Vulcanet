@@ -12,6 +12,7 @@ const Attendant: React.FC = () => {
         <button>
           <FaChevronLeft size={18} color="#00a6ce" />
         </button>
+        <span>0</span>
         <button>
           <FaChevronRight size={18} color="#00a6ce" />
         </button>
