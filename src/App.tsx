@@ -1,10 +1,12 @@
 import React from "react";
+import Router from "./routes";
+
 import "./styles/global.scss";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <Router />
     </div>
   );
 };
