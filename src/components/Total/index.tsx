@@ -1,13 +1,16 @@
 import React from "react";
-
+import { ApplicationState } from "../../store";
+import { useSelector } from "react-redux";
+import { formatPrice } from "../../util/FormatPrice";
 import "./styles.scss";
 
 const Total: React.FC = () => {
+  const planResume = useSelector((state: ApplicationState) => state.plan);
   return (
     <section id="total">
       <div className="left-content">
-        <span>Total: R$150/mês</span>
-        <p>Plano selecionado: Plano 1.0 - Mensal</p>
+        <span>Total: {formatPrice(planResume.total)}/mês</span>
+        <p>Plano selecionado: {planResume.name}</p>
       </div>
       <div className="right-content">
         <button>Contratar</button>

@@ -66,5 +66,6 @@
   &.selected {
     color: #fff;
     background: var(--common-color-green);
+    cursor: not-allowed;
   }
 }
