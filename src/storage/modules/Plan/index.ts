@@ -13,6 +13,7 @@ const INITIAL_STATE: PlanState = {
 };
 
 const reducer: Reducer<PlanState> = (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case PlansActions.LOAD_SUCCESS:
       return { ...state };
