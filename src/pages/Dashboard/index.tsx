@@ -36,7 +36,10 @@ export default function Dashboard() {
         .then((response: AxiosResponse) => {
           setPlans(response.data);
           getCostAttendantData();
-          dispatch(PlanActions.ChoosePlan(response.data[1], "montly"));
+          Object.assign(response.data[1], {
+            price: response.data[1].prices.monthly,
+          });
+          dispatch(PlanActions.ChoosePlan(response.data[1], "monthly"));
           setLoading(false);
         })
         .catch((error: AxiosError) => {

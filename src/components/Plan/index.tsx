@@ -12,7 +12,7 @@ type Props = {
   price: number;
   features: string[];
 };
-
+function handleSelectPlan(): void {}
 const Plan = ({ id, name, description, price, features }: Props) => {
   const selectedPlan = useSelector(
     (state: ApplicationState) => state.cart.plan.id
@@ -30,7 +30,10 @@ const Plan = ({ id, name, description, price, features }: Props) => {
       <div className="price">
         <strong>{formatPrice(price)}/mês</strong>
       </div>
-      <button className={selectedPlan === id ? "selected" : ""}>
+      <button
+        className={selectedPlan === id ? "selected" : ""}
+        onClick={() => handleSelectPlan()}
+      >
         Selecionar
       </button>
       <ul>

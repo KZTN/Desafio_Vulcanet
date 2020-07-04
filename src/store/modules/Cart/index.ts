@@ -7,27 +7,63 @@ const INITIAL_STATE: CartState = {
     features: [],
     id: -1,
     name: "",
-    price: 0,
-    type: "",
+    prices: {
+      monthly: 0,
+      yearly: 0,
+    },
   },
+  type: "",
   attendants: 0,
+  subtotal: 0,
   total: 0,
 };
 
 const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
-  console.log(action.payload);
   switch (action.type) {
-    case CartActions.CHOOSE_PLAN:
-      return state;
+    case CartActions.CHOOSE_PLAN: {
+      if (action.payload.type === "monthly") {
+        return {
+          ...state,
+          plan: action.payload.data,
+          type: action.payload.type,
+          total: action.payload.data.prices.monthly + state.subtotal,
+        };
+      } else {
+        return {
+          ...state,
+          plan: action.payload.data,
+          type: action.payload.type,
+          total: action.payload.data.prices.yearly + state.subtotal,
+        };
+      }
+    }
+
     case CartActions.UPDATE_ATTENDANTS: {
       if (action.payload.amount < 0) {
         return state;
       } else {
-        return {
-          ...state,
-          total: state.plan.price + action.payload.amount * action.payload.cost,
-          attendants: action.payload.amount,
-        };
+        if (state.type === "monthly") {
+          console.log(state.type);
+          return {
+            ...state,
+            subtotal: action.payload.amount * action.payload.cost,
+            total:
+              state.plan.prices.monthly +
+              action.payload.amount * action.payload.cost,
+            attendants: action.payload.amount,
+          };
+        } else {
+          console.log(state.type);
+
+          return {
+            ...state,
+            subtotal: action.payload.amount * action.payload.cost,
+            total:
+              state.plan.prices.yearly +
+              action.payload.amount * action.payload.cost,
+            attendants: action.payload.amount,
+          };
+        }
       }
     }
     default:
