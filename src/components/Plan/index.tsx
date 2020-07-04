@@ -5,15 +5,24 @@ import { ApplicationState } from "../../store";
 import { useSelector } from "react-redux";
 import "./styles.scss";
 import { formatPrice } from "../../util/FormatPrice";
-type Props = {
+
+type Prices = {
+  monthly: number;
+  yearly: number;
+};
+
+type Plan_TYPE = {
   id: number;
   name: string;
   description: string;
-  price: number;
+  prices: Prices;
   features: string[];
+  type: string;
 };
+
 function handleSelectPlan(): void {}
-const Plan = ({ id, name, description, price, features }: Props) => {
+
+const Plan = ({ name, description, id, features, prices, type }: Plan_TYPE) => {
   const selectedPlan = useSelector(
     (state: ApplicationState) => state.cart.plan.id
   );
@@ -28,7 +37,12 @@ const Plan = ({ id, name, description, price, features }: Props) => {
         </div>
       </header>
       <div className="price">
-        <strong>{formatPrice(price)}/mês</strong>
+        <strong>
+          {type === "monthly"
+            ? formatPrice(prices.monthly)
+            : formatPrice(prices.yearly)}
+          /mês
+        </strong>
       </div>
       <button
         className={selectedPlan === id ? "selected" : ""}

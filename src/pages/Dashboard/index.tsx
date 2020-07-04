@@ -36,9 +36,6 @@ export default function Dashboard() {
         .then((response: AxiosResponse) => {
           setPlans(response.data);
           getCostAttendantData();
-          Object.assign(response.data[1], {
-            price: response.data[1].prices.monthly,
-          });
           dispatch(PlanActions.ChoosePlan(response.data[1], "monthly"));
           setLoading(false);
         })
@@ -58,11 +55,12 @@ export default function Dashboard() {
         {plans.map((plan) => (
           <Plan
             key={plan.id}
-            id={plan.id}
-            description={plan.description}
             name={plan.name}
+            description={plan.description}
+            id={plan.id}
             features={plan.features}
-            price={plan.prices.monthly}
+            prices={plan.prices}
+            type={"monthly"}
           />
         ))}
       </section>

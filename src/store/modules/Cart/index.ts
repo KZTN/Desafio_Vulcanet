@@ -43,7 +43,6 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
         return state;
       } else {
         if (state.type === "monthly") {
-          console.log(state.type);
           return {
             ...state,
             subtotal: action.payload.amount * action.payload.cost,
@@ -53,8 +52,6 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
             attendants: action.payload.amount,
           };
         } else {
-          console.log(state.type);
-
           return {
             ...state,
             subtotal: action.payload.amount * action.payload.cost,
