@@ -1,5 +1,6 @@
 export enum CartActions {
   CHOOSE_PLAN = "@cart/CHOOSE_PLAN",
+  CHANGE_PLAN_TYPE = "@cart/CHANGE_PLAN_TYPE",
   UPDATE_ATTENDANTS = "@cart/UPDATE_ATTENDANTS",
 }
 export interface Prices {

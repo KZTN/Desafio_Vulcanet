@@ -19,9 +19,11 @@ const INITIAL_STATE: CartState = {
 };
 
 const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case CartActions.CHOOSE_PLAN: {
       if (action.payload.type === "monthly") {
+        console.log("disparo mensal");
         return {
           ...state,
           plan: action.payload.data,
@@ -29,6 +31,8 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
           total: action.payload.data.prices.monthly + state.subtotal,
         };
       } else {
+        console.log("disparo anual");
+
         return {
           ...state,
           plan: action.payload.data,
@@ -61,6 +65,21 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
             attendants: action.payload.amount,
           };
         }
+      }
+    }
+    case CartActions.CHANGE_PLAN_TYPE: {
+      if (action.payload === "monthly") {
+        return {
+          ...state,
+          type: action.payload,
+          total: state.plan.prices.monthly + state.subtotal,
+        };
+      } else {
+        return {
+          ...state,
+          type: action.payload,
+          total: state.plan.prices.yearly + state.subtotal,
+        };
       }
     }
     default:

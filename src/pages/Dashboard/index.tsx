@@ -32,12 +32,13 @@ export default function Dashboard() {
         });
     }
     async function getPlansData(): Promise<void> {
+      console.log("disparo");
       await api
         .get("/plans")
         .then((response: AxiosResponse) => {
           setPlans(response.data);
           getCostAttendantData();
-          dispatch(PlanActions.ChoosePlan(response.data[1], plantype));
+          dispatch(PlanActions.ChoosePlan(response.data[1], "monthly"));
           setLoading(false);
         })
         .catch((error: AxiosError) => {
@@ -45,13 +46,15 @@ export default function Dashboard() {
         });
     }
     getPlansData();
-  }, [dispatch, plantype]);
+  }, [dispatch]);
 
   function handleChangeType(): void {
     if (plantype === "monthly") {
       setPlantype("yearly");
+      dispatch(PlanActions.ChangePlanType("yearly"));
     } else {
       setPlantype("monthly");
+      dispatch(PlanActions.ChangePlanType("monthly"));
     }
   }
   return (
