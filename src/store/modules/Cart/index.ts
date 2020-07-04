@@ -20,11 +20,9 @@ const INITIAL_STATE: CartState = {
 };
 
 const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case CartActions.CHOOSE_PLAN: {
       if (action.payload.type === "monthly") {
-        console.log("disparo mensal");
         return {
           ...state,
           plan: action.payload.data,
@@ -32,8 +30,6 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
           total: action.payload.data.prices.monthly + state.subtotal,
         };
       } else {
-        console.log("disparo anual");
-
         return {
           ...state,
           plan: action.payload.data,

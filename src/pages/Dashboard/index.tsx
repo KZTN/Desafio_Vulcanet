@@ -35,7 +35,6 @@ export default function Dashboard() {
         });
     }
     async function getPlansData(): Promise<void> {
-      console.log("disparo");
       await api
         .get("/plans")
         .then((response: AxiosResponse) => {
