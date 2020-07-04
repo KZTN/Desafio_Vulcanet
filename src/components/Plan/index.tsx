@@ -2,9 +2,10 @@ import React from "react";
 import ChatIcon from "../../assets/chat.svg";
 import CheckIcon from "../../assets/check.svg";
 import { ApplicationState } from "../../store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./styles.scss";
 import { formatPrice } from "../../util/FormatPrice";
+import * as PlanActions from "../../store/modules/Cart/actions";
 
 type Prices = {
   monthly: number;
@@ -20,12 +21,25 @@ type Plan_TYPE = {
   type: string;
 };
 
-function handleSelectPlan(): void {}
-
 const Plan = ({ name, description, id, features, prices, type }: Plan_TYPE) => {
+  const dispatch = useDispatch();
   const selectedPlan = useSelector(
     (state: ApplicationState) => state.cart.plan.id
   );
+
+  function handleSelectPlan({
+    name,
+    description,
+    id,
+    features,
+    prices,
+    type,
+  }: Plan_TYPE): void {
+    dispatch(
+      PlanActions.ChoosePlan({ name, description, id, features, prices }, type)
+    );
+  }
+
   return (
     <div className="plan">
       <header>
@@ -46,14 +60,16 @@ const Plan = ({ name, description, id, features, prices, type }: Plan_TYPE) => {
       </div>
       <button
         className={selectedPlan === id ? "selected" : ""}
-        onClick={() => handleSelectPlan()}
+        onClick={() =>
+          handleSelectPlan({ name, description, id, features, prices, type })
+        }
       >
         Selecionar
       </button>
       <ul>
         {features.map((feature, index) => (
           <li key={index}>
-            <img src={CheckIcon} alt="" /> <span>{feature}</span>
+            <img src={CheckIcon} alt="check" /> <span>{feature}</span>
           </li>
         ))}
       </ul>

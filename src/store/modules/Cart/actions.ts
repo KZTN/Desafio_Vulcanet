@@ -1,7 +1,7 @@
 import { action } from "typesafe-actions";
-import { CartActions } from "./types";
+import { CartActions, Plan } from "./types";
 
-export const ChoosePlan = (data: String[], type: string) =>
+export const ChoosePlan = (data: Plan, type: string) =>
   action(CartActions.CHOOSE_PLAN, { data, type });
 
 export const UpdateAttendants = (amount: number, cost: number) =>
