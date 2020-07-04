@@ -27,7 +27,9 @@ export default function Dashboard() {
         .get("/attendant")
         .then((response: AxiosResponse) => {
           setCostattendant(response.data.cost);
+          setLoading(false);
         })
+
         .catch((error: AxiosError) => {
           console.log(error);
         });
@@ -40,7 +42,6 @@ export default function Dashboard() {
           setPlans(response.data);
           getCostAttendantData();
           dispatch(PlanActions.ChoosePlan(response.data[1], "monthly"));
-          setLoading(false);
         })
         .catch((error: AxiosError) => {
           console.log(error);
