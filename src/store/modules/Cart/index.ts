@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { CartState, CartActions } from "./types";
+import { toast } from "react-toastify";
 
 const INITIAL_STATE: CartState = {
   plan: {
@@ -82,6 +83,16 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
         };
       }
     }
+    case CartActions.CONFIRM_PURCHASE:
+      toast("Compra efetuada com sucesso!", {
+        position: "top-right",
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return state;
     default:
       return state;
   }

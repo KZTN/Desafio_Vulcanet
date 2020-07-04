@@ -1,10 +1,15 @@
 import React from "react";
 import { ApplicationState } from "../../store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { formatPrice } from "../../util/FormatPrice";
+import * as PlanActions from "../../store/modules/Cart/actions";
 import "./styles.scss";
 
 const Resume: React.FC = () => {
+  const dispatch = useDispatch();
+  function handleConfirm() {
+    dispatch(PlanActions.ConfirmPurchase());
+  }
   const planResume = useSelector((state: ApplicationState) => state.cart);
   return (
     <section id="total">
@@ -16,7 +21,7 @@ const Resume: React.FC = () => {
         </p>
       </div>
       <div className="right-content">
-        <button>Contratar</button>
+        <button onClick={handleConfirm}>Contratar</button>
       </div>
     </section>
   );

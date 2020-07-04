@@ -9,3 +9,5 @@ export const UpdateAttendants = (amount: number, cost: number) =>
 
 export const ChangePlanType = (type: string) =>
   action(CartActions.CHANGE_PLAN_TYPE, type);
+
+export const ConfirmPurchase = () => action(CartActions.CONFIRM_PURCHASE);
