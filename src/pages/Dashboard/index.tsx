@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Plan from "../../components/Plan";
 import Attendant from "../../components/Attendant";
-import Total from "../../components/Total";
+import Resume from "../../components/Resume";
 
 import * as PlanActions from "../../store/modules/Cart/actions";
 
@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 export default function Dashboard() {
   const dispatch = useDispatch();
   const [plans, setPlans] = useState<Plan_TYPE[]>([]);
+  const [plantype, setPlantype] = useState<string>("monthly");
   const [costattendant, setCostattendant] = useState<number>(0);
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,7 +37,7 @@ export default function Dashboard() {
         .then((response: AxiosResponse) => {
           setPlans(response.data);
           getCostAttendantData();
-          dispatch(PlanActions.ChoosePlan(response.data[1], "monthly"));
+          dispatch(PlanActions.ChoosePlan(response.data[1], plantype));
           setLoading(false);
         })
         .catch((error: AxiosError) => {
@@ -44,12 +45,30 @@ export default function Dashboard() {
         });
     }
     getPlansData();
-  }, [dispatch]);
+  }, [dispatch, plantype]);
+
+  function handleChangeType(): void {
+    if (plantype === "monthly") {
+      setPlantype("yearly");
+    } else {
+      setPlantype("monthly");
+    }
+  }
   return (
     <main id="dashboard">
       <div className="dashboard-actions">
-        <button className="active">Mensal</button>
-        <button>Anual</button>
+        <button
+          className={plantype === "monthly" ? "active" : ""}
+          onClick={handleChangeType}
+        >
+          Mensal
+        </button>
+        <button
+          className={plantype === "yearly" ? "active" : ""}
+          onClick={handleChangeType}
+        >
+          Anual
+        </button>
       </div>
       <section id="plans">
         {plans.map((plan) => (
@@ -60,12 +79,12 @@ export default function Dashboard() {
             id={plan.id}
             features={plan.features}
             prices={plan.prices}
-            type={"monthly"}
+            type={plantype}
           />
         ))}
       </section>
       <Attendant cost={costattendant} />
-      <Total />
+      <Resume />
     </main>
   );
 }
