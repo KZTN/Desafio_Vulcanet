@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Plan from "../../components/Plan";
 import Attendant from "../../components/Attendant";
 import Resume from "../../components/Resume";
+import Spinner from "../../components/Spinner";
 
 import * as PlanActions from "../../store/modules/Cart/actions";
 
@@ -59,35 +60,41 @@ export default function Dashboard() {
   }
   return (
     <main id="dashboard">
-      <div className="dashboard-actions">
-        <button
-          className={plantype === "monthly" ? "active" : ""}
-          onClick={handleChangeType}
-        >
-          Mensal
-        </button>
-        <button
-          className={plantype === "yearly" ? "active" : ""}
-          onClick={handleChangeType}
-        >
-          Anual
-        </button>
-      </div>
-      <section id="plans">
-        {plans.map((plan) => (
-          <Plan
-            key={plan.id}
-            name={plan.name}
-            description={plan.description}
-            id={plan.id}
-            features={plan.features}
-            prices={plan.prices}
-            type={plantype}
-          />
-        ))}
-      </section>
-      <Attendant cost={costattendant} />
-      <Resume />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="dashboard-actions">
+            <button
+              className={plantype === "monthly" ? "active" : ""}
+              onClick={handleChangeType}
+            >
+              Mensal
+            </button>
+            <button
+              className={plantype === "yearly" ? "active" : ""}
+              onClick={handleChangeType}
+            >
+              Anual
+            </button>
+          </div>
+          <section id="plans">
+            {plans.map((plan) => (
+              <Plan
+                key={plan.id}
+                name={plan.name}
+                description={plan.description}
+                id={plan.id}
+                features={plan.features}
+                prices={plan.prices}
+                type={plantype}
+              />
+            ))}
+          </section>
+          <Attendant cost={costattendant} />
+          <Resume />
+        </>
+      )}
     </main>
   );
 }
