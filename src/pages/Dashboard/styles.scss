@@ -41,3 +41,12 @@ main#dashboard section#plans {
   display: flex;
   flex-direction: row;
 }
+
+@media (max-width: 650px) {
+  main#dashboard section#plans {
+    flex-direction: column;
+  }
+  main#dashboard {
+    height: 100%;
+  }
+}

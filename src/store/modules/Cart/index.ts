@@ -45,6 +45,14 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
 
     case CartActions.UPDATE_ATTENDANTS: {
       if (action.payload.amount < 0) {
+        toast.warn("Valor mínimo é 0", {
+          position: "top-right",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return state;
       } else {
         if (state.type === "monthly") {

@@ -35,3 +35,9 @@ input {
   width: 100%;
   display: block;
 }
+
+@media (max-width: 650px) {
+  .App {
+    padding: 1rem;
+  }
+}

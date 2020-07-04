@@ -37,3 +37,11 @@ section#attendant .right-content {
     border: 0;
   }
 }
+
+@media (max-width: 650px) {
+  section#attendant {
+    margin-top: 30px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
